@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
+//importamos el controlador
+const proyectosController = require('../controllers/proyectosController');
+
 module.exports = function () {
-    router.get('/', (req, res) => {
-        res.send("Hola Mundo con ExpressJS");
-    });
-    router.get('/nosotros', (req, res) => {
-        res.send("Nosotros");
-    });
+    router.get('/', proyectosController.proyectosHome);
+    router.get('/nosotros', proyectosController.nosotros);
     return router;
 }
