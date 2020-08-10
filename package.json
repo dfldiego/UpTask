@@ -4,16 +4,22 @@
   "description": "Proyecto UpTask con NodeJS y MVC",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/dfldiego/UpTask.git"
+    "url": "https://github.com/dfldiego/UpTask.git"
   },
   "author": "Diego Longo",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dfldiego/UpTask/issues"
   },
-  "homepage": "https://github.com/dfldiego/UpTask#readme"
+  "homepage": "https://github.com/dfldiego/UpTask#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
 }
