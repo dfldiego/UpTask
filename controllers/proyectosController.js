@@ -1,5 +1,5 @@
 exports.proyectosHome = (req, res) => {
-    res.send("Hola Mundo con ExpressJS");
+    res.render("index"); //index -> nombre del archivo de la vista.
 }
 
 exports.nosotros = (req, res) => {
