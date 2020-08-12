@@ -5,4 +5,6 @@ Proyecto NodeJS y MVC
 
 -ExpressJS 
 
+-Pug
+
 -Nodemon 
