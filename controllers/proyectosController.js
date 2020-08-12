@@ -11,5 +11,22 @@ exports.formularioProyecto = (req, res) => {
 }
 
 exports.nuevoProyecto = (req, res) => {
-    res.send('Enviaste el formulario');
+    // req.body -> Envia a la consola lo que el usuario escriba -> console.log(req.body);
+    //validar campos vacios -> sin librerias.
+    const { nombre } = req.body;
+    let errores = [];
+
+    if (!nombre) {
+        errores.push({ 'texto': 'Agrega un nombre al proyecto' });
+    }
+    //si hay errores
+    if (errores.length > 0) {
+        res.render('nuevoProyecto', {
+            nombrePagina: 'Nuevo Proyecto',
+            errores
+        })
+    } else {
+        //si no hay errores -> insertar en la BBDD
+
+    }
 }
