@@ -7,6 +7,15 @@ const path = require('path');
 //importamos bodyParser
 const bodyParser = require('body-parser');
 
+//Conexion a BBDD
+const db = require('./config/db');
+
+//Importar el modelo
+require('./models/Proyectos');
+db.sync()
+    .then(() => console.log('Conectado a Sequelize'))
+    .catch(err => console.log('No se conecto a Sequelize'));
+
 //crear una app de express
 const app = express();
 
