@@ -14,3 +14,5 @@ Proyecto NodeJS y MVC
 -Mysql
 
 -express validator
+
+-slug

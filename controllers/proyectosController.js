@@ -1,5 +1,7 @@
 //importar el modelo
 const Proyectos = require('../models/Proyectos');
+//importar slug
+const slug = require('slug');
 
 exports.proyectosHome = (req, res) => {
     res.render("index", {
@@ -29,7 +31,8 @@ exports.nuevoProyecto = async (req, res) => {
         })
     } else {
         //si no hay errores -> insertar en la BBDD
-        const proyecto = await Proyectos.create({ nombre });
+        const url = slug(nombre).toLowerCase();
+        const proyecto = await Proyectos.create({ nombre, url });
         res.redirect('/');
     }
 }
@@ -38,4 +41,5 @@ exports.nuevoProyecto = async (req, res) => {
 /**
  * // req.body -> Envia a la consola lo que el usuario escriba -> console.log(req.body);
  * //create -> metodo de sequelize para agregar a la BBDD
+ * //slug -> toma una cadena de texto. Ej: “Tienda Virtual” y la convierte a “Tienda-Virtual”
  */
