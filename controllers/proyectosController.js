@@ -63,6 +63,16 @@ exports.proyectoPorUrl = async (req, res) => {
 
 }
 
+exports.formularioEditar = async (req, res) => {
+    const proyectos = await Proyectos.findAll();
+    //render a la vista
+    res.render('nuevoProyecto', {
+        nombrePagina: 'Editar Proyecto',
+        proyectos
+    })
+}
+
+
 /**
  * // req.body -> Envia a la consola lo que el usuario escriba -> console.log(req.body);
  * //create -> metodo de sequelize para agregar a la BBDD
