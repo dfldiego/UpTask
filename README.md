@@ -8,3 +8,9 @@ Proyecto NodeJS y MVC
 -Pug
 
 -Nodemon 
+
+-Sequelize
+
+-Mysql
+
+-express validator

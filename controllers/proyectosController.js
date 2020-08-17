@@ -13,7 +13,7 @@ exports.formularioProyecto = (req, res) => {
     })
 }
 
-exports.nuevoProyecto = (req, res) => {
+exports.nuevoProyecto = async (req, res) => {
     //validar campos vacios -> sin librerias.
     const { nombre } = req.body;
     let errores = [];
@@ -29,13 +29,13 @@ exports.nuevoProyecto = (req, res) => {
         })
     } else {
         //si no hay errores -> insertar en la BBDD
-        Proyectos.create({ nombre })
-            .then(() => console.log('Insertado correctamente'))
-            .catch(error => console.log(error))
+        const proyecto = await Proyectos.create({ nombre });
+        res.redirect('/');
     }
 }
 
 
 /**
  * // req.body -> Envia a la consola lo que el usuario escriba -> console.log(req.body);
+ * //create -> metodo de sequelize para agregar a la BBDD
  */
