@@ -1,3 +1,6 @@
+//importar el modelo
+const Proyectos = require('../models/Proyectos');
+
 exports.proyectosHome = (req, res) => {
     res.render("index", {
         nombrePagina: 'Proyectos'
@@ -11,7 +14,6 @@ exports.formularioProyecto = (req, res) => {
 }
 
 exports.nuevoProyecto = (req, res) => {
-    // req.body -> Envia a la consola lo que el usuario escriba -> console.log(req.body);
     //validar campos vacios -> sin librerias.
     const { nombre } = req.body;
     let errores = [];
@@ -27,6 +29,13 @@ exports.nuevoProyecto = (req, res) => {
         })
     } else {
         //si no hay errores -> insertar en la BBDD
-
+        Proyectos.create({ nombre })
+            .then(() => console.log('Insertado correctamente'))
+            .catch(error => console.log(error))
     }
 }
+
+
+/**
+ * // req.body -> Envia a la consola lo que el usuario escriba -> console.log(req.body);
+ */
