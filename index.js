@@ -7,6 +7,9 @@ const path = require('path');
 //importamos bodyParser
 const bodyParser = require('body-parser');
 
+//Helpers con algunas funciones
+const helpers = require('./helpers');
+
 //Conexion a BBDD
 const db = require('./config/db');
 
@@ -27,6 +30,12 @@ app.set('view engine', 'pug'); //set() -> agregar un valor.
 
 //Añadir carpeta de las vistas
 app.set('views', path.join(__dirname, './views'));
+
+//Pasar vardump a la aplicacion
+app.use((req, res, next) => {
+    res.locals.vardump = helpers.vardump;   //res.locals -> es una forma de crear variables y consumirlo en otro archivo del proyecto.
+    next();     //se refiere al siguiente middleware. se va al siguiente.
+});
 
 //Habilitar BodyParser -> para leer datos del formulario.
 app.use(bodyParser.urlencoded({
