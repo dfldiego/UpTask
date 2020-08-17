@@ -16,3 +16,5 @@ Proyecto NodeJS y MVC
 -express validator
 
 -slug
+
+-shortid
