@@ -38,6 +38,10 @@ exports.nuevoProyecto = async (req, res) => {
     }
 }
 
+exports.proyectoPorUrl = async (req, res) => {
+    await res.send(req.params.url);
+}
+
 /**
  * // req.body -> Envia a la consola lo que el usuario escriba -> console.log(req.body);
  * //create -> metodo de sequelize para agregar a la BBDD
