@@ -4,7 +4,9 @@
   "description": "Proyecto UpTask con NodeJS y MVC",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./index.js"
+    "dev": "nodemon ./index.js",
+    "start": "concurrently \"npm run dev \" \"npm run watch \"",
+    "watch": "webpack --w --mode development"
   },
   "repository": {
     "type": "git",
@@ -31,6 +33,7 @@
     "@babel/preset-env": "^7.11.0",
     "babel-loader": "^8.1.0",
     "nodemon": "^2.0.4",
-    "webpack": "^4.44.1"
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
   }
 }
