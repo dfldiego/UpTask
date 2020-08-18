@@ -43,13 +43,15 @@ exports.nuevoProyecto = async (req, res) => {
 }
 
 exports.proyectoPorUrl = async (req, res) => {
-    const proyectos = await Proyectos.findAll();
+    const proyectosPromise = Proyectos.findAll();
 
-    const proyecto = await Proyectos.findOne({
+    const proyectoPromise = Proyectos.findOne({
         where: {
             url: req.params.url
         }
     });
+
+    const [proyectos, proyecto] = await Promise.all([proyectosPromise, proyectoPromise]);
 
     //si no hay proyecto
     if (!proyecto) return next();
@@ -63,17 +65,22 @@ exports.proyectoPorUrl = async (req, res) => {
 
 }
 
+//Debido a que no hace falta esperar a que finalize findAll() para que comience findOne() -> usamos promises.
+//si tenemos multiples consultas que son independientes -> colocarla dentro de un Promise.
 exports.formularioEditar = async (req, res) => {
-    const proyectos = await Proyectos.findAll();
+    const proyectosPromise = Proyectos.findAll();
+
+    const proyectoPromise = Proyectos.findOne({
+        where: {
+            id: req.params.id
+        }
+    });
+
+    const [proyectos, proyecto] = await Promise.all([proyectosPromise, proyectoPromise]);
+
     //render a la vista
     res.render('nuevoProyecto', {
         nombrePagina: 'Editar Proyecto',
         proyectos
     })
 }
-
-
-/**
- * // req.body -> Envia a la consola lo que el usuario escriba -> console.log(req.body);
- * //create -> metodo de sequelize para agregar a la BBDD
- */
