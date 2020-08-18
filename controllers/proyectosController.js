@@ -37,7 +37,7 @@ exports.nuevoProyecto = async (req, res) => {
         })
     } else {
         //si no hay errores -> insertar en la BBDD
-        const proyecto = await Proyectos.create({ nombre });
+        await Proyectos.create({ nombre });
         res.redirect('/');
     }
 }
@@ -65,8 +65,6 @@ exports.proyectoPorUrl = async (req, res) => {
 
 }
 
-//Debido a que no hace falta esperar a que finalize findAll() para que comience findOne() -> usamos promises.
-//si tenemos multiples consultas que son independientes -> colocarla dentro de un Promise.
 exports.formularioEditar = async (req, res) => {
     const proyectosPromise = Proyectos.findAll();
 
@@ -84,4 +82,27 @@ exports.formularioEditar = async (req, res) => {
         proyectos,
         proyecto
     })
+}
+
+exports.actualizarProyecto = async (req, res) => {
+    const proyectos = await Proyectos.findAll();
+    //validar campos vacios -> sin librerias.
+    const { nombre } = req.body;
+    let errores = [];
+
+    if (!nombre) {
+        errores.push({ 'texto': 'Agrega un nombre al proyecto' });
+    }
+    //si hay errores
+    if (errores.length > 0) {
+        res.render('nuevoProyecto', {
+            nombrePagina: 'Nuevo Proyecto',
+            errores,
+            proyectos
+        })
+    } else {
+        //si no hay errores -> insertar en la BBDD
+        await Proyectos.update({ nombre: nombre }, { where: { id: req.params.id } });
+        res.redirect('/');
+    }
 }
