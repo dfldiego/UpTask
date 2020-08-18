@@ -18,3 +18,13 @@ Proyecto NodeJS y MVC
 -slug
 
 -shortid
+
+-babel-loader
+
+-babel/core
+
+-babel/present
+
+-webpack
+
+-concurrently
