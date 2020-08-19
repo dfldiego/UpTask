@@ -1,4 +1,4 @@
-import tareas from './modulos/proyectos';
+import proyectos from './modulos/proyectos';
 
 /*
 aqui podemos ir agregando mas archivos debido a que es el entry
