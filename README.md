@@ -28,3 +28,7 @@ Proyecto NodeJS y MVC
 -webpack
 
 -concurrently
+
+-axios
+
+-sweetAlert2
