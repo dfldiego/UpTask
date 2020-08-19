@@ -15,6 +15,8 @@ const db = require('./config/db');
 
 //Importar el modelo
 require('./models/Proyectos');
+require('./models/Tareas');
+//sync me genera la tabla automaticamente
 db.sync()
     .then(() => console.log('Conectado a Sequelize'))
     .catch(err => console.log('No se conecto a Sequelize'));
