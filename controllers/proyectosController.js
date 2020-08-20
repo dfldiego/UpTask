@@ -1,6 +1,7 @@
 //importar el modelo
 const Proyectos = require('../models/Proyectos');
 
+// FIND ALL
 exports.proyectosHome = async (req, res) => {
     const proyectos = await Proyectos.findAll();    //se conecta al modelo
 
@@ -11,6 +12,7 @@ exports.proyectosHome = async (req, res) => {
     });
 }
 
+//FIND ALL
 exports.formularioProyecto = async (req, res) => {
     const proyectos = await Proyectos.findAll();
     res.render('nuevoProyecto', {
@@ -19,6 +21,7 @@ exports.formularioProyecto = async (req, res) => {
     })
 }
 
+//FIND ALL-CREATE
 exports.nuevoProyecto = async (req, res) => {
     const proyectos = await Proyectos.findAll();
     //validar campos vacios -> sin librerias.
@@ -42,6 +45,7 @@ exports.nuevoProyecto = async (req, res) => {
     }
 }
 
+// FIND ALL - FIND ONE
 exports.proyectoPorUrl = async (req, res) => {
     const proyectosPromise = Proyectos.findAll();
 
@@ -65,6 +69,7 @@ exports.proyectoPorUrl = async (req, res) => {
 
 }
 
+// FIND ALL - FIND ONE
 exports.formularioEditar = async (req, res) => {
     const proyectosPromise = Proyectos.findAll();
 
@@ -84,6 +89,7 @@ exports.formularioEditar = async (req, res) => {
     })
 }
 
+// FIND ALL - UPDATE
 exports.actualizarProyecto = async (req, res) => {
     const proyectos = await Proyectos.findAll();
     //validar campos vacios -> sin librerias.
@@ -107,6 +113,7 @@ exports.actualizarProyecto = async (req, res) => {
     }
 }
 
+// DESTROY
 exports.eliminarProyecto = async (req, res, next) => {
     //req -> usar query o params
     console.log(req.query);
