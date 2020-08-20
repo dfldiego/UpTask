@@ -1,5 +1,6 @@
 //importar el modelo
 const Proyectos = require('../models/Proyectos');
+const Tareas = require('../models/Tareas');
 
 // FIND ALL
 exports.proyectosHome = async (req, res) => {
@@ -48,25 +49,32 @@ exports.nuevoProyecto = async (req, res) => {
 // FIND ALL - FIND ONE
 exports.proyectoPorUrl = async (req, res) => {
     const proyectosPromise = Proyectos.findAll();
-
     const proyectoPromise = Proyectos.findOne({
         where: {
             url: req.params.url
         }
     });
-
     const [proyectos, proyecto] = await Promise.all([proyectosPromise, proyectoPromise]);
+    // Consultar tareas del proyecto actual
+    const tareas = await Tareas.findAll({
+        where: {
+            proyectoId: proyecto.id
+        },
+        /* include: [  //agrega info del modelo Proyecto en tareas -> similar a join.
+            { model: Proyectos }
+        ] */
+    });
+    //console.log(tareas);
 
     //si no hay proyecto
     if (!proyecto) return next();
-
     //render a la vista
     res.render('tareas', {
         nombrePagina: 'Tareas del Proyecto',
         proyecto,
-        proyectos
+        proyectos,
+        tareas
     })
-
 }
 
 // FIND ALL - FIND ONE
