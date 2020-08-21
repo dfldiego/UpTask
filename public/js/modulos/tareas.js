@@ -41,7 +41,18 @@ if (tareas) {
                     //Enviar el Delete por medio de AXIOS
                     axios.delete(url, { params: { idTarea } })
                         .then(function (respuesta) {
-                            console.log(respuesta);
+                            //console.log(respuesta);
+                            if (respuesta.status === 200) {
+                                //Eliminar el nodo. Vamos al nodo padre. CODIGO DE DOM
+                                tareaHTML.parentElement.removeChild(tareaHTML);
+
+                                //Opcional una Alerta
+                                Swal.fire(
+                                    'Tarea Eliminada Correctamente',
+                                    respuesta.data,
+                                    'success'
+                                )
+                            }
                         })
 
                 }
