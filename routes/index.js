@@ -27,10 +27,15 @@ module.exports = function () {
     // Agregar una tarea
     router.post('/proyectos/:url', tareasController.agregarTarea);
 
+    // Actualizar una tarea
+    router.patch('/tareas/:id', tareasController.cambiarEstadoTarea);
+
+
     return router;
 }
 
 /**
+ * patch -> similar a update , cambia una parte del registro. update cambia todo el registro.
  * body -> xq lo que queremos validar en el create esta en el req.body
  * check -> funcion con los metodos para validar.
  * not().isEmpty() -> para que no haya campo vacio
