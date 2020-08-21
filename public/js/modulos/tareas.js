@@ -11,7 +11,9 @@ if (tareas) {
             const url = `${location.origin}/tareas/${idTarea}`
             axios.patch(url, { idTarea })
                 .then(function (respuesta) {
-                    console.log(respuesta);
+                    if (res.status === 200) {
+                        icono.classList.toggle('completo'); //evita tener que recargar para actualizar el ESTADO
+                    }
                 })
 
         }
