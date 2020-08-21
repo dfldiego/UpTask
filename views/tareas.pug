@@ -14,11 +14,12 @@ block contenido
         
         //pre= vardump(tareas)
         //TODO - Listado de pendientes
+        //proyecto.url+':'+tarea.id -> para mas seguridad
         .listado-pendientes
             ul
                 if tareas.length
                     each tarea in tareas
-                        li.tarea
+                        li.tarea(data-tarea=tarea.id)
                             p= tarea.tarea
                             .acciones
                                 if tarea.estado
