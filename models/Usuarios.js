@@ -17,7 +17,7 @@ const Usuarios = db.define('usuarios', {
                 msg: 'Agrega un Correo Válido'
             },
             notEmpty: {
-                msg: 'El password no puede ir vacio'
+                msg: 'Ingrese un email'
             }
         },
         unique: {

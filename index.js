@@ -6,10 +6,12 @@ const routes = require('./routes');
 const path = require('path');
 //importamos bodyParser
 const bodyParser = require('body-parser');
+//importamos expressValidator
+const expressValidator = require('express-validator');
 //importamos connect-flash
 const flash = require('connect-flash');
 
-//Helpers con algunas funciones
+//Helpers con algunas funciones 
 const helpers = require('./helpers');
 
 //Conexion a BBDD
@@ -31,6 +33,9 @@ const app = express();
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
+// Agregamos express validator a toda la aplicacion
+/* app.use(expressValidator()); */
 
 //Archivos estaticos
 app.use(express.static('public'));

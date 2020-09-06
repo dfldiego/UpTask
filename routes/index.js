@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 //importar express validator
-const { body } = require('express-validator');
+const { check } = require('express-validator');
 
 //importamos el controlador
 const proyectosController = require('../controllers/proyectosController');
@@ -13,14 +13,14 @@ module.exports = function () {
 
     router.get('/', proyectosController.proyectosHome);
     router.get('/nuevo-proyecto', proyectosController.formularioProyecto);
-    router.post('/nuevo-proyecto', body('nombre').not().isEmpty().trim().escape(), proyectosController.nuevoProyecto);
+    router.post('/nuevo-proyecto', check('nombre').not().isEmpty().trim().escape(), proyectosController.nuevoProyecto);
 
     //listar proyecto
     router.get('/proyectos/:url', proyectosController.proyectoPorUrl);
 
     // Actualizar el proyecto
     router.get('/proyecto/editar/:id', proyectosController.formularioEditar);
-    router.post('/nuevo-proyecto/:id', body('nombre').not().isEmpty().trim().escape(), proyectosController.actualizarProyecto);
+    router.post('/nuevo-proyecto/:id', check('nombre').not().isEmpty().trim().escape(), proyectosController.actualizarProyecto);
 
     // Eliminar el proyecto
     router.delete('/proyectos/:url', proyectosController.eliminarProyecto);

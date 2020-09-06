@@ -17,9 +17,9 @@ exports.crearCuenta = async (req, res) => {
         await Usuarios.create({ email, password })
         res.redirect('/iniciar-sesion');
     } catch (error) {
-        //console.log(error)
+        console.log(error);
         res.render('crearCuenta', {
-            error: error.errors,
+            errores: error.errors,
             nombrePagina: 'Crear Cuenta en UpTask'
         })
     }
