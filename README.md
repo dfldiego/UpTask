@@ -34,3 +34,5 @@ Proyecto NodeJS y MVC
 -sweetAlert2
 
 -bcrypt-nodejs: hashear las pass. npm install --save bcrypt-nodejs
+
+-connect-flash: libreria de alertas y mensajes. npm install --save connect-flash
