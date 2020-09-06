@@ -6,12 +6,15 @@ html(lang="en")
         .contenedor-formulario
             h1 Crea tu cuenta en UpTask
 
-            if errores 
-                each error in errores
-                    if error.message === 'usuarios.usuarios_email_unique must be unique'
-                        p.error.alerta= 'usuario ya registrado'
-                    else
-                        p.error.alerta=error.message
+            if locals.mensajes 
+                .alertas
+                    each categoria in Object.keys(locals.mensajes)
+                        each error in mensajes[categoria]
+                            .alerta(class=`${categoria}`)
+                                if error === 'usuarios.usuarios_email_unique must be unique'
+                                    p= 'usuario ya registrado'
+                                else
+                                    p=error
                     
             form#formulario.caja.caja-login(method="POST" action="/crear-cuenta")
                 .campo

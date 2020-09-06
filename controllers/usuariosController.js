@@ -17,9 +17,9 @@ exports.crearCuenta = async (req, res) => {
         await Usuarios.create({ email, password })
         res.redirect('/iniciar-sesion');
     } catch (error) {
-        console.log(error);
+        req.flash('error', error.errors.map(error => error.message))  //map() va a crear diferentes elementos de errores. Si tenemos 5 errores todos van a estar agrupados en 'error'
         res.render('crearCuenta', {
-            errores: error.errors,
+            mensajes: req.flash(),                                     //paso los errores a la vista
             nombrePagina: 'Crear Cuenta en UpTask'
         })
     }

@@ -36,3 +36,7 @@ Proyecto NodeJS y MVC
 -bcrypt-nodejs: hashear las pass. npm install --save bcrypt-nodejs
 
 -connect-flash: libreria de alertas y mensajes. npm install --save connect-flash
+
+-cookie-parser: autenticar usuarios npm install --save cookie-parser
+
+-express-session: autenticar usuarios y usuario vaya de una pagina a otra. npm install --save express-session
