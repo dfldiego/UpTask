@@ -32,3 +32,5 @@ Proyecto NodeJS y MVC
 -axios
 
 -sweetAlert2
+
+-bcrypt-nodejs: hashear las pass. npm install --save bcrypt-nodejs
