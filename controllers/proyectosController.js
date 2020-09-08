@@ -4,6 +4,8 @@ const Tareas = require('../models/Tareas');
 
 // FIND ALL
 exports.proyectosHome = async (req, res) => {
+    console.log(res.locals.usuario);
+
     const proyectos = await Proyectos.findAll();    //se conecta al modelo
 
     //resultado se pasa a la vista.

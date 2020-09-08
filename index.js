@@ -69,8 +69,11 @@ app.use(passport.session());
 
 //Pasar vardump a la aplicacion
 app.use((req, res, next) => {
+    /* console.log(req.user); */  //aqui esta la info referida al usuario
     res.locals.vardump = helpers.vardump;   //res.locals -> es una forma de crear variables y consumirlo en otro archivo del proyecto.
     res.locals.mensajes = req.flash();
+    res.locals.usuario = { ...req.user } || null
+    /* console.log(res.locals.usuario); */
     next();     //se refiere al siguiente middleware. se va al siguiente.
 });
 
