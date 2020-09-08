@@ -40,3 +40,7 @@ Proyecto NodeJS y MVC
 -cookie-parser: autenticar usuarios npm install --save cookie-parser
 
 -express-session: autenticar usuarios y usuario vaya de una pagina a otra. npm install --save express-session
+
+-passport: autenticar. npm install --save passport.
+
+-passport-local: npm install --save passport-local
