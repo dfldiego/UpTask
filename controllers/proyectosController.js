@@ -43,7 +43,8 @@ exports.nuevoProyecto = async (req, res) => {
         })
     } else {
         //si no hay errores -> insertar en la BBDD
-        await Proyectos.create({ nombre });
+        const usuarioId = res.locals.usuario.id;
+        await Proyectos.create({ nombre, usuarioId });
         res.redirect('/');
     }
 }
