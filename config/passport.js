@@ -17,6 +17,14 @@ passport.use(
                 const usuario = await Usuarios.find({
                     where: { email: email }
                 })
+                // El usuario existe, password incorrecto
+                if (!usuario.verificarPassword(password)) {
+                    return done(null, false, {
+                        message: 'Password Incorrecto'
+                    })
+                }
+                // El usuario(email) existe, y el password correcto
+                return done(null, usuario);
             } catch (error) {
                 //ese usuario no existe
                 return done(null, false, {
@@ -25,4 +33,17 @@ passport.use(
             }
         }
     )
-)
+);
+
+// Serializar el usuario
+passport.serializeUser((usuario, callback) => {
+    callback(null, usuario);
+});
+
+// Deserializar el usuario
+passport.deserializeUser((usuario, callback) => {
+    callback(null, usuario);
+});
+
+//exportar
+module.exports = passport;

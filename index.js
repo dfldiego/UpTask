@@ -14,6 +14,8 @@ const flash = require('connect-flash');
 const session = require('express-session');
 //importamos cookie-parser
 const cookieParser = require('cookie-parser');
+//importamos passport
+const passport = require('./config/passport');
 
 //Helpers con algunas funciones 
 const helpers = require('./helpers');
@@ -60,6 +62,10 @@ app.use(session({
     resave: false,                  //si queremos que alguien se autentique en el sistema, mantenga la sesion viva incluso si no esta haciendo nada.
     saveUninitialized: false         //si queremos que alguien se autentique en el sistema, mantenga la sesion viva incluso si no esta haciendo nada.
 }));
+
+// iniciar una instancia de passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Pasar vardump a la aplicacion
 app.use((req, res, next) => {

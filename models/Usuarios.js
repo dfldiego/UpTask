@@ -44,6 +44,12 @@ const Usuarios = db.define('usuarios', {
     }
 });
 
+/**METODOS PERSONALIZADOS**/
+// verificar si el password del param, coincide con el this.password de la BBDD
+Usuarios.prototype.verificarPassword = function (password) {
+    return bcrypt.compareSync(password, this.password)
+}
+
 //Cada usuario puede crear muchos proyectos.
 Usuarios.hasMany(Proyectos);
 
