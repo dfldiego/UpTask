@@ -4,9 +4,13 @@ const Tareas = require('../models/Tareas');
 
 // FIND ALL
 exports.proyectosHome = async (req, res) => {
-    console.log(res.locals.usuario);
-
-    const proyectos = await Proyectos.findAll();    //se conecta al modelo
+    /* console.log(res.locals.usuario); */
+    const usuarioId = res.locals.usuario.id;
+    const proyectos = await Proyectos.findAll({
+        where: {
+            usuarioId: usuarioId
+        }
+    });    //se conecta al modelo
 
     //resultado se pasa a la vista.
     res.render("index", {
@@ -17,7 +21,13 @@ exports.proyectosHome = async (req, res) => {
 
 //FIND ALL
 exports.formularioProyecto = async (req, res) => {
-    const proyectos = await Proyectos.findAll();
+    const usuarioId = res.locals.usuario.id;
+    const proyectos = await Proyectos.findAll({
+        where: {
+            usuarioId: usuarioId
+        }
+    });    //se conecta al modelo
+
     res.render('nuevoProyecto', {
         nombrePagina: 'Nuevo Proyecto',
         proyectos
@@ -26,7 +36,13 @@ exports.formularioProyecto = async (req, res) => {
 
 //FIND ALL-CREATE
 exports.nuevoProyecto = async (req, res) => {
-    const proyectos = await Proyectos.findAll();
+    const usuarioId = res.locals.usuario.id;
+    const proyectos = await Proyectos.findAll({
+        where: {
+            usuarioId: usuarioId
+        }
+    });    //se conecta al modelo
+
     //validar campos vacios -> sin librerias.
     const { nombre } = req.body;
     let errores = [];
@@ -51,10 +67,17 @@ exports.nuevoProyecto = async (req, res) => {
 
 // FIND ALL - FIND ONE
 exports.proyectoPorUrl = async (req, res) => {
-    const proyectosPromise = Proyectos.findAll();
+    const usuarioId = res.locals.usuario.id;
+    const proyectosPromise = Proyectos.findAll({
+        where: {
+            usuarioId: usuarioId
+        }
+    });    //se conecta al modelo
+
     const proyectoPromise = Proyectos.findOne({
         where: {
-            url: req.params.url
+            url: req.params.url,
+            usuarioId: usuarioId
         }
     });
     const [proyectos, proyecto] = await Promise.all([proyectosPromise, proyectoPromise]);
@@ -82,11 +105,17 @@ exports.proyectoPorUrl = async (req, res) => {
 
 // FIND ALL - FIND ONE
 exports.formularioEditar = async (req, res) => {
-    const proyectosPromise = Proyectos.findAll();
+    const usuarioId = res.locals.usuario.id;
+    const proyectosPromise = Proyectos.findAll({
+        where: {
+            usuarioId: usuarioId
+        }
+    });    //se conecta al modelo
 
     const proyectoPromise = Proyectos.findOne({
         where: {
-            id: req.params.id
+            id: req.params.id,
+            usuarioId: usuarioId
         }
     });
 
@@ -102,7 +131,13 @@ exports.formularioEditar = async (req, res) => {
 
 // FIND ALL - UPDATE
 exports.actualizarProyecto = async (req, res) => {
-    const proyectos = await Proyectos.findAll();
+    const usuarioId = res.locals.usuario.id;
+    const proyectos = await Proyectos.findAll({
+        where: {
+            usuarioId: usuarioId
+        }
+    });    //se conecta al modelo
+
     //validar campos vacios -> sin librerias.
     const { nombre } = req.body;
     let errores = [];
