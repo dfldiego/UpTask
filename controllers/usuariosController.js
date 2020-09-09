@@ -1,4 +1,6 @@
 const Usuarios = require('../models/Usuarios');
+const enviarEmail = require('../handlers/email');
+
 // GET
 exports.formCrearCuenta = (req, res) => {
     res.render('crearCuenta', {
@@ -24,6 +26,26 @@ exports.crearCuenta = async (req, res) => {
     try {
         //crear el usuario  
         await Usuarios.create({ email, password })
+
+        // crear una URL de confirmacion de cuenta
+        const confirmarUrl = `http://${req.headers.host}/confirmar/${email}`;
+
+        // crear el objeto de usuario
+        const usuario = {
+            email
+        }
+
+        // enviar email
+        await enviarEmail.enviar({
+            usuario: usuario,
+            subject: 'Confirma tu cuenta UpTask',
+            confirmarUrl: confirmarUrl,
+            archivo: 'confirmar-cuenta' // template
+        });
+
+        // redirigir al usuario
+        req.flash('correcto', 'Enviamos un correo, confirma tu cuenta');
+
         res.redirect('/iniciar-sesion');
     } catch (error) {
         req.flash('error', error.errors.map(error => error.message))  //map() va a crear diferentes elementos de errores. Si tenemos 5 errores todos van a estar agrupados en 'error'
