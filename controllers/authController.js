@@ -1,5 +1,6 @@
 const passport = require('passport');
 const Usuarios = require('../models/Usuarios');
+const crypto = require('crypto');   //utilidad que nos permite crear tokens
 
 exports.autenticarUsuario = passport.authenticate('local', {
     successRedirect: '/',
@@ -38,9 +39,22 @@ exports.enviarToken = async (req, res) => {
     //si no existe el usuario
     if (!usuario) {
         req.flash('error', 'No existe esa cuenta');
-        res.render('reestablecer', {
-            nombrePagina: 'Reestablecer tu Contraseña',
-            mensajes: req.flash()
-        })
+        res.redirect('/reestablecer');
     }
+
+    // usuario existe
+    usuario.token = crypto.randomBytes(20).toString('hex');
+    usuario.expiracion = Date.now() + 3600000;    //una hora
+    /* console.log(token);
+    console.log(expiracion); */
+    // guardarlos en la BBDD -> el usuario con token y expiracion
+    await usuario.save();
+
+    //url de reset
+    const resetUrl = `http://${req.headers.host}/reestablecer/${usuario.token}`;
+    console.log(resetUrl);
+}
+
+exports.resetPassword = async (req, res) => {
+    res.json(req.params.token);
 }
