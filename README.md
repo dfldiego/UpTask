@@ -44,3 +44,9 @@ Proyecto NodeJS y MVC
 -passport: autenticar. npm install --save passport.
 
 -passport-local: npm install --save passport-local
+
+-nodemailer: para enviar correos. npm install --save nodemailer
+
+-juice: tomar un correo y agregarle estilos linealmente. npm install --save juice
+
+-html-to-text: para generar un html y ponerlo como texto. npm install --save html-to-text
