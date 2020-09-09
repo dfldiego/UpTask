@@ -82,5 +82,3 @@ app.use('/', routes());
 
 //puerto
 app.listen(3000); //listen -> metodo de express
-
-require('./handlers/email');

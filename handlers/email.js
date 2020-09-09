@@ -18,13 +18,19 @@ let transport = nodemailer.createTransport({
     },
 });
 
+// generar HTML
+const generarHTML = () => {
+    const html = pug.renderFile(`${__dirname}/../views/emails/reestablecer-password.pug`);
+    return juice(html);
+}
+
 // send mail with defined transport object
 let mailOptions = {
     from: 'UpTask <no-reply@uptask.com>',
     to: "correo@correo.com",
     subject: "Password Reset",
     text: "Hola",
-    html: "<b>Hola mundo</b>", // html body
+    html: generarHTML()
 };
 
 transport.sendMail(mailOptions);
