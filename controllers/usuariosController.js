@@ -64,6 +64,26 @@ exports.formRestablecerPassword = (req, res) => {
     })
 }
 
+//cambia el estado de una cuenta.
+exports.confirmarCuenta = async (req, res) => {
+    const usuario = await Usuarios.findOne({
+        where: {
+            email: req.params.correo
+        }
+    })
+
+    // si no existe el usuario
+    if (!usuario) {
+        req.flash('error', 'No valido');
+        res.redirect('/crear-cuenta');
+    }
+
+    usuario.activo = 1;
+    await usuario.save();
+    req.flash('correcto', 'Cuenta activada correctamente');
+    res.redirect('/iniciar-sesion');
+
+}
 
 /*
 Tiene que ver con las acciones para crear un usuario/cuenta
