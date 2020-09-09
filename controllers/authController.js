@@ -66,6 +66,10 @@ exports.enviarToken = async (req, res) => {
         resetUrl: resetUrl,
         archivo: 'reestablecer-password'    //mismo nombre que archivo pug
     });
+
+    //Terminar 
+    req.flash('correcto', 'Se envió un mensaje a tu correo');
+    res.redirect('/iniciar-sesion');
 }
 
 exports.validarToken = async (req, res) => {
