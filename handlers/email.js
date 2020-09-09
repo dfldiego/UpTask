@@ -24,7 +24,7 @@ const generarHTML = (archivo, opciones = {}) => {
     return juice(html);
 }
 
-exports.enviar = async (opciones) => {
+exports.enviar = async (opciones) => {  //pasamos las opciones desde el authController -> enviarToken
     const html = generarHTML(opciones.archivo, opciones);
     const text = htmlToText.fromString(html);
     // send mail with defined transport object
@@ -36,7 +36,11 @@ exports.enviar = async (opciones) => {
         html: html
     };
 
-    const enviarEmail = util.promisify(transport.sendMail, transport);
+    const enviarEmail = util.promisify(transport.sendMail, transport);  // util -> si hay algo que no soporte async y await(promises), lo convierta a async y await
     return enviarEmail.call(transport, opcionesEmail);
 }
 
+/**
+ * transport.sendMail -> es el que envia el email
+ *
+ */

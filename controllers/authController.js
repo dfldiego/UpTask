@@ -58,8 +58,9 @@ exports.enviarToken = async (req, res) => {
     const resetUrl = `http://${req.headers.host}/reestablecer/${usuario.token}`;
     /* console.log(resetUrl);  // url del token */
 
-    // Envia el correo con el token
-    await enviarEmail.enviar({
+    // vamos a enviar el token hacia el usuario.Envia el correo con el token
+    // aqui vamos a comunicar el enviar(handlers/email.js) con este enviarToken.
+    await enviarEmail.enviar({  //enviamos parametros desde este archivo a handlers/email.js
         usuario: usuario,
         subject: 'Password Reset',
         resetUrl: resetUrl,
