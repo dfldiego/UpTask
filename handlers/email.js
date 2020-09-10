@@ -6,12 +6,14 @@ const juice = require('juice'); //agregar estilos lineales
 const htmlToText = require('html-to-text');     // crea una version de nuestro correo de html a texto
 const util = require('util');
 const emailConfig = require('../config/email'); //trae las credenciales
+require('dotenv').config();
 
 //configuracion desde nodemailer.com
 // create reusable transporter object using the default SMTP transport
 let transport = nodemailer.createTransport({
-    host: emailConfig.host,
-    port: emailConfig.port,
+    /* host: emailConfig.host,
+    port: emailConfig.port, */
+    service: 'gmail',
     auth: {
         user: emailConfig.user,
         pass: emailConfig.pass
