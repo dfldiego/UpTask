@@ -16,13 +16,11 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 //importamos passport
 const passport = require('./config/passport');
-
 //Helpers con algunas funciones 
 const helpers = require('./helpers');
-
 //Conexion a BBDD
 const db = require('./config/db');
-
+//variables de entorno
 require('dotenv').config();
 
 //Importar el modelo
@@ -36,6 +34,9 @@ db.sync()
 
 //crear una app de express
 const app = express();
+
+const { PORT } = require('./config/environments');
+/* console.log(PORT);  //sale 3306 */
 
 //puerto
 app.set('port', (process.env.PORT || 8080))

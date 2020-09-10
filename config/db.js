@@ -1,9 +1,11 @@
 const Sequelize = require('sequelize');
+const { PORT, DB } = require('./environments');
+/* console.log(PORT);  //sale 3306 */
 
-const sequelize = new Sequelize('z0sbu5tn4p7zy5hf', 'acu8iv9i9sd0129q', 'hrp5te6g6jfmhj69', {
-    host: 'd1kb8x1fu8rhcnej.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-    dialect: 'mysql',
-    port: '3306',
+const sequelize = new Sequelize(DB.database, DB.username, DB.password, {
+    host: DB.host,
+    dialect: DB.dialect,
+    port: PORT,
     operatorsAliases: '0',
     define: {
         timestamps: false
