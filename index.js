@@ -23,6 +23,8 @@ const helpers = require('./helpers');
 //Conexion a BBDD
 const db = require('./config/db');
 
+require('dotenv').config();
+
 //Importar el modelo
 require('./models/Proyectos');
 require('./models/Tareas');
