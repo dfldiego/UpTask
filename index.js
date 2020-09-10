@@ -35,6 +35,9 @@ db.sync()
 //crear una app de express
 const app = express();
 
+//puerto
+app.set('port', (process.env.PORT || 8080))
+
 //Archivos estaticos
 app.use(express.static('public'));
 
@@ -80,5 +83,4 @@ app.use((req, res, next) => {
 //routes
 app.use('/', routes());
 
-//puerto
-app.listen(3000); //listen -> metodo de express
+pp.listen(app.get('port'));
